@@ -11,6 +11,10 @@
 using namespace std;
 
 const int BIN_SIZE = 15;
+const int ONE_SIZE = 5;
+const int TWO_SIZE = 10;
+const int THREE_SIZE = 12;
+const int FOUR_SIZE = 15;
 
 // Creates a data set of random numbers from 1 to 100
 // IN: arr[] - array to store numbers in
@@ -21,54 +25,80 @@ int heuristic(vector<int> v, int size);
 
 int main() {
     srand(time(0));
-    vector<int> ten;
-    vector<int> hundred;
-    vector<int> thousand;
-    vector<int> tenThousand;
-    createDataSet(ten, 10);
-    createDataSet(hundred, 100);
-    createDataSet(thousand, 1000);
-    createDataSet(tenThousand, 10000);
-    sort(ten.begin(), ten.end(), greater<int>());
-    sort(hundred.begin(), hundred.end(), greater<int>());
-    sort(thousand.begin(), thousand.end(), greater<int>());
-    sort(tenThousand.begin(), tenThousand.end(), greater<int>());
-
+    vector<int> one;
+    vector<int> two;
+    vector<int> three;
+    vector<int> four;
+    createDataSet(one, ONE_SIZE);
+    createDataSet(two, TWO_SIZE);
+    createDataSet(three, THREE_SIZE);
+    createDataSet(four, FOUR_SIZE);
+    
+    sort(one.begin(), one.end(), greater<int>());
     auto start = std::chrono::high_resolution_clock::now();
-    int tenHeuristic = heuristic(ten, 10);
+    int oneHeuristic = heuristic(one, ONE_SIZE);
     auto end = std::chrono::high_resolution_clock::now();
     auto elapsed = std::chrono::duration_cast<std::chrono::microseconds>(end - start);
-    cout << "10 items, heuristic: " << tenHeuristic << " bins" << endl;
-    cout << "10 items, heuristic: " << elapsed.count() << " microseconds" << endl << endl;
+    cout << ONE_SIZE << " items, heuristic: " << oneHeuristic << " bins" << endl;
+    cout << ONE_SIZE << " items, heuristic: " << elapsed.count() << " microseconds" << endl << endl;
 
-    sort(ten.begin(), ten.end());
+    sort(two.begin(), two.end(), greater<int>());
     start = std::chrono::high_resolution_clock::now();
-    int tenIntract = intractable(ten, 10);
+    int twoHeuristic = heuristic(two, TWO_SIZE);
     end = std::chrono::high_resolution_clock::now();
     elapsed = std::chrono::duration_cast<std::chrono::microseconds>(end - start);
-    cout << "10 items, intractable: " << tenIntract << " bins" << endl;
-    cout << "10 items, intractable: " << elapsed.count() << " microseconds" << endl << endl;
+    cout << TWO_SIZE << " items, heuristic: " << twoHeuristic << " bins" << endl;
+    cout << TWO_SIZE << " items, heuristic: " << elapsed.count() << " microseconds" << endl << endl;
     
-    /* start = std::chrono::high_resolution_clock::now();
-    int hundredHeuristic = heuristic(hundred, 100);
-    end = std::chrono::high_resolution_clock::now();
-    elapsed = std::chrono::duration_cast<std::chrono::microseconds>(end - start);
-    cout << "100 items, heuristic: " << hundredHeuristic << " bins" << endl;
-    cout << "100 items, heuristic: " << elapsed.count() << " microseconds" << endl << endl;
-    
+    sort(three.begin(), three.end(), greater<int>());
     start = std::chrono::high_resolution_clock::now();
-    int thousandHeuristic = heuristic(thousand, 1000);
+    int threeHeuristic = heuristic(three, THREE_SIZE);
     end = std::chrono::high_resolution_clock::now();
     elapsed = std::chrono::duration_cast<std::chrono::microseconds>(end - start);
-    cout << "1000 items, heuristic: " << thousandHeuristic << " bins" << endl;
-    cout << "1000 items, heuristic: " << elapsed.count() << " microseconds" << endl << endl;
+    cout << THREE_SIZE << " items, heuristic: " << threeHeuristic << " bins" << endl;
+    cout << THREE_SIZE << " items, heuristic: " << elapsed.count() << " microseconds" << endl << endl;
     
+    sort(four.begin(), four.end(), greater<int>());
     start = std::chrono::high_resolution_clock::now();
-    int tenThousandHeuristic = heuristic(tenThousand, 10000);
+    int fourHeuristic = heuristic(four, FOUR_SIZE);
     end = std::chrono::high_resolution_clock::now();
     elapsed = std::chrono::duration_cast<std::chrono::microseconds>(end - start);
-    cout << "10000 items, heuristic: " << tenThousandHeuristic << " bins" << endl;
-    cout << "10000 items, heuristic: " << elapsed.count() << " microseconds" << endl; */
+    cout << FOUR_SIZE << " items, heuristic: " << fourHeuristic << " bins" << endl;
+    cout << FOUR_SIZE << " items, heuristic: " << elapsed.count() << " microseconds" << endl;
+
+    cout << endl;
+
+    sort(one.begin(), one.end());
+    start = std::chrono::high_resolution_clock::now();
+    int oneIntract = intractable(one, ONE_SIZE);
+    end = std::chrono::high_resolution_clock::now();
+    elapsed = std::chrono::duration_cast<std::chrono::microseconds>(end - start);
+    cout << ONE_SIZE << " items, intractable: " << oneIntract << " bins" << endl;
+    cout << ONE_SIZE << " items, intractable: " << elapsed.count() << " microseconds" << endl << endl;
+
+    sort(two.begin(), two.end());
+    start = std::chrono::high_resolution_clock::now();
+    int twoIntract = intractable(two, TWO_SIZE);
+    end = std::chrono::high_resolution_clock::now();
+    elapsed = std::chrono::duration_cast<std::chrono::microseconds>(end - start);
+    cout << TWO_SIZE << " items, intractable: " << twoIntract << " bins" << endl;
+    cout << TWO_SIZE << " items, intractable: " << elapsed.count() << " microseconds" << endl << endl;
+
+    sort(three.begin(), three.end());
+    start = std::chrono::high_resolution_clock::now();
+    int threeIntract = intractable(three, THREE_SIZE);
+    end = std::chrono::high_resolution_clock::now();
+    elapsed = std::chrono::duration_cast<std::chrono::microseconds>(end - start);
+    cout << THREE_SIZE << " items, intractable: " << threeIntract << " bins" << endl;
+    cout << THREE_SIZE << " items, intractable: " << elapsed.count() << " microseconds" << endl << endl;
+
+    sort(four.begin(), four.end());
+    start = std::chrono::high_resolution_clock::now();
+    int fourIntract = intractable(four, FOUR_SIZE);
+    end = std::chrono::high_resolution_clock::now();
+    elapsed = std::chrono::duration_cast<std::chrono::microseconds>(end - start);
+    cout << FOUR_SIZE << " items, intractable: " << fourIntract << " bins" << endl;
+    cout << FOUR_SIZE << " items, intractable: " << elapsed.count() << " microseconds" << endl << endl;
 }
 
 void createDataSet(vector<int> &v, int size) {
@@ -80,14 +110,14 @@ void createDataSet(vector<int> &v, int size) {
 int intractable(vector<int> v, int size) {
     vector<int> numBins;
     do {
-        for (int i : v)
+        /* for (int i : v)
             cout << i << " ";
-        cout << endl;
+        cout << endl; */
         numBins.push_back(heuristic(v, size));
     } while(next_permutation(v.begin(), v.end()));
-    cout << endl;
+    /* cout << endl;
     for (int i : numBins)
-        cout << i << endl;
+        cout << i << endl; */
     return *min_element(numBins.begin(), numBins.end());
 }
 
@@ -97,7 +127,7 @@ int heuristic(vector<int> v, int size) {
     bool addedItem = false;
     for (int i = 0; i < size; i++) {
         if (bins[0] + v[i] <= BIN_SIZE) {
-            cout << "added " << i << " to 0" << endl;
+            //cout << "added " << i << " to 0" << endl;
             bins[0] += v[i];
             addedItem = true;
         }
@@ -105,19 +135,19 @@ int heuristic(vector<int> v, int size) {
             int j = 1;
             while(!addedItem && j < bins.size()) {
                 if (bins[j] + v[i] <= BIN_SIZE) {
-                    cout << "added " << i << " to " << j << endl;
+                    //cout << "added " << i << " to " << j << endl;
                     bins[j] += v[i];
                     addedItem = true;
                 }
                 j++;
             }
             if (!addedItem) {
-                cout << "added " << i << " to " << bins.size() << endl;
+                //cout << "added " << i << " to " << bins.size() << endl;
                 bins.push_back(v[i]);
             }
         }
         addedItem = false;
     }
-    cout << endl;
+    //cout << endl;
     return bins.size();
 }
